@@ -1,6 +1,6 @@
 # README for a parser for a BASIC-like programming language
 
-This is a parser for a BASIC-like programming language written in Flex and Bison. The parser defines the syntax and semantics of the programming language and converts the source code into an abstract syntax tree (AST).
+This is a parser for a BASIC-like programming language written in Flex and Bison. The parser defines the syntax and semantics of the programming language and detects if any error in syntax.
 
 ## Requirements
 
@@ -21,7 +21,7 @@ gcc lex.yy.c y.tab.c -o parser
 
 Replace `input.bas` with the path to the input source file.
 
-The output of the parser is an abstract syntax tree (AST) printed to stdout.
+The program outputs the correct tokens it parses until an error due to a BNF rule violation. No syntax error for succesful execution.
 
 ## Language syntax
 
