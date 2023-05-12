@@ -96,15 +96,8 @@ factor:
     | array_access
     ;
 array_access:
-    CHAR LPAREN array_var RPAREN
-    | CHAR LPAREN array_var COMMA array_var RPAREN
-    ;
-array_var:
-    INT_ID
-    | INTEGER
-    | SINGLE_PRE_ID
-    | DOUBLE_PRE_ID
-    | CHAR
+    CHAR LPAREN expression RPAREN
+    | CHAR LPAREN expression COMMA expression RPAREN
     ;
 data_list:
     | data COMMA  data_list
@@ -182,7 +175,7 @@ PRINT_stmt:
     ;
 print_list:
     print_list delimiter print_item
-    | print_item
+    | print_item 
     ;
 delimiter:
     COMMA
@@ -193,11 +186,39 @@ print_item:
     | string_expression
     ;
 REM_stmt:
-    REM REM_expression
+    REM
+    | REM REM_expression
     ;
 REM_expression:
+    REM_item
+    | REM_item REM_expression
+;
+REM_item:
     CHAR
-    | CHAR REM_expression
+    | FOR
+    | TO
+    | STEP
+    | NEXT
+    | GOSUB
+    | GOTO
+    | RETURN
+    | STOP
+    | IF
+    | THEN
+    | DEF
+    | FN
+    | DIM
+    | END
+    | DATA
+    | INPUT
+    | LET
+    | REM
+    | PRINT
+    | AND
+    | OR
+    | XOR
+    | NOT
+    ;
 
 %%
 void yyerror(char *s) {

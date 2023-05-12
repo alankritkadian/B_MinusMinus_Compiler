@@ -2,6 +2,7 @@
     #include <stdio.h>
     #include "y.tab.h"
     void yyerror(char *);
+    int lineNo = 1;
 %}
 
 %%
@@ -13,7 +14,7 @@
 [0-9]+                  { printf("INTEGER\n"); yylval = atoi(yytext); return INTEGER;}
 [0-9]+\.[0-9]+          { printf("FLOAT\n"); return FLOAT;}
 \".*?\"                 { printf("STRING\n"); return STRING;} 
-[\n]+                   { printf("NEWLINE\n"); return NEWLINE;}
+[\n]+                   { printf("NEWLINE\n line number - %d\n",++lineNo); return NEWLINE;}
 "^"                     { printf("EXP\n");return EXP; }
 "("                     { printf("LPAREN\n");return LPAREN; }
 ")"                     { printf("RPAREN\n");return RPAREN; }
